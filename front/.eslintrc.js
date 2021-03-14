@@ -20,6 +20,7 @@ module.exports = {
     rules: {
         'linebreak-style': 'off',
         indent: ['error', 4, { SwitchCase: 1 }],
+        'import/prefer-default-export': 'off',
         'react/jsx-indent': ['error', 4],
     },
 };

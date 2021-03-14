@@ -1,4 +1,4 @@
-import TEST_ACTION from '../action/testActions';
+import { TEST_ACTION } from '../action/testActions';
 
 const testReducer = (state = {}, action) => {
     switch (action.type) {

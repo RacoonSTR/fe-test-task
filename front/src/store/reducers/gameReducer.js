@@ -1,4 +1,4 @@
-import MOVE from '../action/gameActions';
+import { MOVE } from '../action/gameActions';
 
 const initialState = {
     board: [[1, 2, 3], [4, 5, 6], [7, 8, 9]],

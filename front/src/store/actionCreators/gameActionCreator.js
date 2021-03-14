@@ -1,4 +1,4 @@
-import MOVE from '../action/gameActions';
+import { MOVE } from '../action/gameActions';
 
 class GameActionCreator {
     static testAction(value) {
