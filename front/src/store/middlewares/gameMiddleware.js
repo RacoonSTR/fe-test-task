@@ -14,7 +14,6 @@ export default class GameMiddleware {
     static sendMove(value) {
         return (dispatch) => {
             dispatch(GameActionCreator.requestMove());
-            console.log(`sendMove: ${value}`);
             return fetch('/api/game/move', {
                 method: 'POST',
                 headers: {
@@ -24,7 +23,6 @@ export default class GameMiddleware {
                     index: value,
                 }),
             }).then((res) => res.json()).then((data) => {
-                console.log(data);
                 dispatch(GameActionCreator.receiveMove(data.result));
             }).catch((err) => {
                 console.log(err);
