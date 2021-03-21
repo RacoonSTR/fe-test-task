@@ -1,10 +1,23 @@
-import { MOVE } from '../action/gameActions';
+import { REQUEST_MOVE, RECEIVE_MOVE, LOAD_GAME } from '../action/gameActions';
 
 class GameActionCreator {
-    static testAction(value) {
+    static loadGame(game) {
         return {
-            type: MOVE,
-            value,
+            type: LOAD_GAME,
+            game,
+        };
+    }
+
+    static requestMove() {
+        return {
+            type: REQUEST_MOVE,
+        };
+    }
+
+    static receiveMove(game) {
+        return {
+            type: RECEIVE_MOVE,
+            game,
         };
     }
 }
