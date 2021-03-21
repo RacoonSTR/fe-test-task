@@ -6,7 +6,12 @@ export default class GameMiddleware {
     }
 
     static loadGame() {
-        return (dispatch) => fetch('/game', { method: 'GET' }).then((res) => res.json()).then((data) => {
+        return (dispatch) => fetch('/api/game', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then((res) => res.json()).then((data) => {
             dispatch(GameActionCreator.loadGame(data.result));
         });
     }
