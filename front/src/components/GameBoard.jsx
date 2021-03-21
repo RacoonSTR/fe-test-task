@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import GameMiddleware from '../store/middlewares/gameMiddleware';
 
 function GameBoard(props) {
-    const { board, sendMove } = props;
+    const { game, sendMove } = props;
 
     return (
         <div className="container">
-            {board.map((row) => (
+            {game.board.map((row) => (
                 <div className="row">
                     {row.map((value) => (
                         <BoardField
@@ -23,20 +23,23 @@ function GameBoard(props) {
 }
 
 GameBoard.propTypes = {
-    board: PropTypes.arrayOf(
-        PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
-    ).isRequired,
+    game: PropTypes.shape({
+        board: PropTypes.arrayOf(
+            PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+        ),
+    }).isRequired,
     sendMove: PropTypes.func.isRequired,
 };
 
 function BoardField(props) {
     const { value, onFieldClick } = props;
+    const isDisabled = value === 'X' || value === 'O';
     const style = {};
-    if (value === 'X' || value === 'O') {
+    if (isDisabled) {
         style.backgroundColor = 'red';
     }
     return (
-        <div className="col-4" style={style} onClick={onFieldClick} role="button" tabIndex="0">
+        <div className="col-4" style={style} onClick={!isDisabled ? onFieldClick : undefined} role="button" tabIndex="0">
             {value}
         </div>
     );
@@ -49,7 +52,7 @@ BoardField.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        board: state.game.board,
+        game: state.game,
     };
 }
 
